@@ -7,7 +7,7 @@ const register = async (req: Request, res: Response): Promise<void> => {
     const { name, email, password } = req.body;
     const user = await UserModal.findOne({ email });
     if (user) {
-      res.status(400).send("User already exists");
+      res.status(400).json({ message: "User already exists", success: false });
       return;
     }
     const userModal = new UserModal({
